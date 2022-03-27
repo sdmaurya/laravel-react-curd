@@ -1,8 +1,19 @@
 import React from 'react';
-import { Navbar,Nav,Container} from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import { Navbar,Nav,Container,NavDropdown} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 const Header = () => {
+  const navigates = useNavigate();
+
+  const user = JSON.parse(localStorage.getItem('users'))
+  //  console.warn(user.name)
+
+  function Logout(){
+    localStorage.clear();
+    navigates("/login");
+  }
     return ( 
     <>
       
@@ -18,10 +29,21 @@ const Header = () => {
       >
         <Link to="/"  className="mr-auto my-2  p-2 my-lg-0 "     
         >Home</Link>
-        <Link to="/register" className="mr-auto my-2  p-2 my-lg-0 ">Register</Link>
-        <Link to="/login" className="mr-auto my-2  p-2 my-lg-0 ">Login</Link>
-        <Link to="/list" className="mr-auto my-2  p-2 my-lg-0 ">List</Link>       
+        {/* <Link to="/register" className="mr-auto my-2  p-2 my-lg-0 ">Register</Link> */}
+        <Link to="/list" className="mr-auto my-2  p-2 my-lg-0 ">List</Link>
+        <Link to="/login" className="mr-auto my-2  p-2 my-lg-0 ">Login</Link>  
+             
    
+      </Nav>
+      <Nav>
+        {
+          localStorage.getItem('users') ?
+        <NavDropdown title={user && user.name} id="basic-nav-dropdown">
+        <NavDropdown.Item onClick={Logout}>Logout</NavDropdown.Item>
+        <NavDropdown.Item>Profile</NavDropdown.Item> 
+        </NavDropdown>
+        :null
+}
       </Nav>
  
     </Navbar.Collapse>

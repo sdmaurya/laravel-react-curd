@@ -20,13 +20,30 @@ const Update = () => {
           
       },[])
 
-      function UpdateOps(id){
+  async function UpdateOps(id){
+   
+          // let item = {name,email,password};   
+          // let result =    await fetch('http://127.0.0.1:8000/api/update/'+id,{
+          //  method:'PUT',
+          //  headers:{
+          //      'Content-Type':'application/json',
+          //      "Accept":"application/json"
+          //      },
+          //    body:JSON.stringify(item)
+          //  });
+          //  result =await result.json();
+          //  console.log(result);
+     
+      const formData = new FormData();         
+          formData.append('name',name);
+          formData.append('email',email);
 
-        // formData.append('name',name);
-        // formData.append('email',email);
-
-
-    
+          let result =    await fetch('http://127.0.0.1:8000/api/update/'+id+'?_method=PUT',{
+            method:'POST',          
+              body:formData
+            });
+   
+          alert('Data updated successfully')
        
       }
 
@@ -36,9 +53,9 @@ const Update = () => {
 
 <h1>Update Page</h1>
 <div>
-      <label for="fname">First name:</label><br />
-        <input type="text"  id="fname" defaultValue={data.name}  onChange={(e)=>setName(e.target.value)}  name="name" /><br />
-        <label for="email">Last name:</label><br/>
+      <label>First name:</label><br />
+        <input type="text"  id="name" defaultValue={data.name}  onChange={(e)=>setName(e.target.value)}  name="name" /><br /><br /><br />
+        <label >Last name:</label><br/>
         <input type="text"  id="email" name="email" defaultValue={data.email} onChange={(e)=>setEmail(e.target.value)}  /><br/> 
 
         <button type="submit" value="Submit"  onClick={()=>{UpdateOps(data.id)}}>Update</button>

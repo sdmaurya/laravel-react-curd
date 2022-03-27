@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { ModalBody } from 'react-bootstrap';
+// import { ModalBody } from 'react-bootstrap';
 
   function Register() {
 
@@ -19,7 +19,7 @@ import { ModalBody } from 'react-bootstrap';
         body:JSON.stringify(item)
       });
       result =await result.json();
-      console.log(result);
+      // console.log(result);
 
       item = ''
       
@@ -27,11 +27,11 @@ import { ModalBody } from 'react-bootstrap';
     
     return (
         <div>
-      <label for="fname">First name:</label><br />
+      <label >First name:</label><br />
         <input type="text" onChange={(e)=>setName(e.target.value)} id="fname"  name="name" value={name}/><br />
-        <label for="email">Last name:</label><br/>
+        <label >Last name:</label><br/>
         <input type="text" onChange={(e)=>setEmail(e.target.value)} id="email" name="email" value={email}/><br/>
-        <label for="password">Password:</label><br/>
+        <label >Password:</label><br/>
         <input type="text" onChange={(e)=>setPassword(e.target.value)} id="password" name="password" value={password}/><br/><br /> 
         <button type="submit" onClick={SignUP} value="Submit">Submit</button>
         </div>

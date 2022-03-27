@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Validator;
 class Employee extends Controller
 {
     /**
@@ -22,9 +23,25 @@ class Employee extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function login(Request $request)
     {
-        //
+
+        $data = User::where('email', $request->email)->first(); 
+        if($data){ 
+
+            if(!$data || !Hash::check($request->password, $data->password)) {           
+
+  
+                return ['error'=>'Wrong Password'];
+            }else{                             
+          
+                return  $data;
+            }
+        }else{
+   
+            return ['error'=>'Wrong Email and Password'];
+        }
+
     }
 
     /**
@@ -35,6 +52,12 @@ class Employee extends Controller
      */
     public function store(Request $request)
     {
+
+        // $validated = $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'password' => 'required',
+        // ]);
        
         $data = new User;
         $data->name = $request->name;
@@ -81,18 +104,33 @@ class Employee extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update($id,Request $request)
     {
-        $data = User::find($request->id);
-        $data->name = $request->name;     
-        $data->email = $request->email;     
+
+        // return $id;
+    //   $request->input();
+        // $data = User::find($id);
+        // $data->name = $request->name;     
+        // $data->email = $request->email;     
+        // $result = $data->save();
+        // if($result){    
+        //     return ['Result'=>'Data updated successfully'];
+        // }else{
+        //     return ['Result'=>'DUnable to updated data'];
+        // }
+        // return ['Result'=>'Data updated successfully'];
+
+        $data = User::find($id);
+        $data->name = $request->input('name');     
+        $data->email = $request->input('email');     
         $result = $data->save();
         if($result){    
             return ['Result'=>'Data updated successfully'];
         }else{
             return ['Result'=>'DUnable to updated data'];
         }
-        // return ['Result'=>'Data updated successfully'];
+
+
     }
 
     /**

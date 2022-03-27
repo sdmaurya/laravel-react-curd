@@ -19,9 +19,9 @@ function App() {
 
 <Routes>
 
-<Route path="/login" element={<Login/>} />
+<Route path="/login" element={<List/>} />
 <Route path="/register" element={<Register/>} />
-<Route path="/list" element={<List/>} />
+<Route path="/list" element={<Login/>} />
 <Route path="/update/:id" element={<Update/>} />
 {/* <Route path="/update" element={<Update/>} /> */}
 
