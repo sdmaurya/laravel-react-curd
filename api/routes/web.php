@@ -16,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/ins', [\App\Http\Controllers\Employee::class,'index']);
+Route::view('/register','register');
+
+Route::get('/ins', [\App\Http\Controllers\Employee::class,'index']);
 
 // Route::get('/ajaxreq', [\App\Http\Controllers\Employees\EmployeeController::class,'verifyDoc']);
 
 // Route::get('/countryid', [\App\Http\Controllers\Employees\EmployeeController::class,'stateFetch']);
 
-// Route::post('/memberdocument', [\App\Http\Controllers\Employees\EmployeeController::class,'uploaddoc']);
+Route::post('/form_submit', [\App\Http\Controllers\Employee::class,'uploaddoc']);

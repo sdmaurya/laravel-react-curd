@@ -23,6 +23,24 @@ class Employee extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function uploaddoc(Request $request)
+    {
+
+        $data = new User;
+        $data->name = $request->input('name');
+        $data->email = $request->input('email');
+        $data->password = Hash::make($request->input('password'));
+        $result = $data->save();
+        if($result){  
+
+            return ['Result'=>'Data saved successfully'];
+            
+        }else{
+
+            return ['Result'=>'DUnable to saved data'];
+        }
+
+    }
     public function login(Request $request)
     {
 
@@ -58,6 +76,12 @@ class Employee extends Controller
         //     'email' => 'required',
         //     'password' => 'required',
         // ]);
+        // $validator = Validator::make($request->all(),[
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'password' => 'required'
+        // ]);
+
        
         $data = new User;
         $data->name = $request->name;
