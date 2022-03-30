@@ -1,0 +1,27 @@
+React Context
+
+Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+Means 
+
+Using react context api or usecontext or redux pass data through parent component to  child component.
+
+https://www.geeksforgeeks.org/whats-the-difference-between-usecontext-and-redux/
+
+useContext: useContext is a hook that provides a way to pass data through the component tree without manually passing props down through each nested component.
+
+Syntax:
+
+const Context = useContext(initialValue);
+
+
+
+Redux: Redux is a state managing library used in JavaScript apps. It is very popular for React and React-Native. It simply manages the state and data of your application.
+
+Building Parts of redux:
+
+Action
+Reducer
+Store
+
+ 
