@@ -8,8 +8,9 @@ import Update from './Update';
 // import Register from './Register';
 // import { Route } from "react-router";
 import {Button} from 'react-bootstrap';
-
+import NoteState from './NoteState';
 import Header from './Header';
+import Test2 from './Test2';
 function App() {
   return (
     <>
@@ -17,18 +18,25 @@ function App() {
 {/* <Register/>
 <List/> */}
 
+    {/* All Route route */}
+
+{/* <NoteState> */}
 <Routes>
 
 <Route path="/login" element={<List/>} />
 <Route path="/register" element={<Register/>} />
 <Route path="/list" element={<Login/>} />
 <Route path="/update/:id" element={<Update/>} />
-{/* <Route path="/update" element={<Update/>} /> */}
 
+{/* Particular route */}
+<Route path="test2" element={<NoteState><Test2/></NoteState>} />
+{/* Particular route */}
+{/* <Route path="/update" element={<Update/>} /> */}
+    
 </Routes>
-          
-        
-       
+{/* </NoteState>  */}
+
+       {/* All Route route */}
 
  
 

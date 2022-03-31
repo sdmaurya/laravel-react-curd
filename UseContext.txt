@@ -25,3 +25,87 @@ Reducer
 Store
 
  
+
+Use Context Example
+
+Create File noteContext.js
+import { createContext } from "react";
+
+const noteContext = createContext();
+
+export default noteContext;
+
+
+Create File NoteState.js
+
+import React from 'react';
+
+// import { useContext } from 'react';
+
+import NoteContext from './noteContext';
+
+const NoteState = (props) => {
+
+    const state = {
+        "name":"surendra",
+        "class":12
+    }
+
+    return ( <>
+    
+    <h1>Hello </h1>
+
+    <NoteContext.Provider value={state}>
+    {props.children}
+    </NoteContext.Provider>
+
+
+
+    </> );
+}
+ 
+export default NoteState;
+
+App.js
+
+For single route
+<Route path="test2" element={<NoteState><Test2/></NoteState>} />
+
+For All route
+
+
+{/* <NoteState> */}
+<Routes>
+
+<Route path="/login" element={<List/>} />
+<Route path="/register" element={<Register/>} />
+<Route path="/list" element={<Login/>} />
+<Route path="/update/:id" element={<Update/>} />
+
+{/* Particular route */}
+<Route path="test2" element={<NoteState><Test2/></NoteState>} />
+{/* Particular route */}
+{/* <Route path="/update" element={<Update/>} /> */}
+    
+</Routes>
+{/* </NoteState>  */}
+
+
+Which file we have to use
+import React from 'react';
+import { useContext } from 'react';
+import noteContext from './noteContext';
+
+const Test2 = () => {
+
+  const a = useContext(noteContext);
+    
+    return (
+        <>
+        
+        <h1>This is {a.name}</h1>
+        </>
+      );
+}
+ 
+export default Test2;
